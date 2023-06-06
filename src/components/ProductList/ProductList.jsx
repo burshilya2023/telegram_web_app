@@ -20,7 +20,19 @@ const getTotalPrice = (items = []) => {
         return acc += item.price
     }, 0)
 }
-
+// axios.post('http://89.223.31.99:8000/web-data', data, {
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(response => {
+//       // Обработка успешного ответа
+//       console.log(response.data);
+//     }) 
+//     .catch(error => {
+//       // Обработка ошибки
+//       console.error(error);
+//     });
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
@@ -31,28 +43,13 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        // fetch('http://89.223.31.99:8000/web-data', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-
-        axios.post('http://89.223.31.99:8000/web-data', data, {
+        fetch('http://89.223.31.99:8000/web-data', {
+            method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
-            }
-          })
-            .then(response => {
-              // Обработка успешного ответа
-              console.log(response.data);
-            })
-            .catch(error => {
-              // Обработка ошибки
-              console.error(error);
-            });
-
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
     }, [addedItems])
 
     useEffect(() => {
