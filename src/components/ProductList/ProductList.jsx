@@ -43,7 +43,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://89.223.31.99:8000/web-data', {
+        fetch('https://telegram-store-webapp.herokuapp.com/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
